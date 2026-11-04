@@ -1,13 +1,12 @@
 // ============================================================
-// EDIT ONLY THIS FILE to change your portfolio content.
-// Facts below are real (from your CV/record). Items marked TODO
-// are placeholders — replace them only with genuinely live links.
-// Do NOT invent clients, testimonials, stats, or employment claims.
+// EDIT ONLY THIS FILE to change portfolio content.
+// Facts are from abdul's verified record. Add a repo/demo link
+// only when it is genuinely live — never invent one.
 // ============================================================
 
 export const profile = {
   name: "Abdul Rehman",
-  title: "AI Automation & Full-Stack Developer",
+  title: "AI Automation Engineer | Full-Stack Developer | SaaS Builder | AI Chatbot Developer",
   tagline:
     "I build complete digital products end to end — websites, apps, SaaS, AI chatbots and automation that stops businesses missing customers.",
   location: "Pakistan · Working worldwide, remotely",
@@ -18,10 +17,34 @@ export const profile = {
   instagram: "https://www.instagram.com/rhm.dev",
 };
 
+export const roles = [
+  "AI Automation Engineer",
+  "Full-Stack Developer",
+  "SaaS Builder",
+  "AI Chatbot Developer",
+];
+
 export const about = {
   bio: [
     "I am a full-stack and AI automation developer. My work is not just code — it is products ready for real customers: designed, built, launched, and followed up.",
     "I help small businesses and startups turn an idea into a working website, app, SaaS product, or chatbot — and automate the repetitive work that eats their day.",
+  ],
+  specializations: [
+    {
+      title: "AI & Automation",
+      detail:
+        "RAG chatbots, agentic workflows, and business automation that answers customers and follows up on leads.",
+    },
+    {
+      title: "Full-Stack Development",
+      detail:
+        "Websites, web apps and SaaS platforms — from database and API to a polished, responsive interface.",
+    },
+    {
+      title: "Career Focus",
+      detail:
+        "Products that launch, convert, and keep working — for clients worldwide, remotely.",
+    },
   ],
   education: [
     { label: "BCS", detail: "COMSATS University, Vehari" },
@@ -38,10 +61,10 @@ export const about = {
 export type SkillGroup = { title: string; items: string[] };
 
 export const skillGroups: SkillGroup[] = [
-  { title: "AI & LLM", items: ["RAG systems", "LangChain", "LangGraph", "Prompt engineering", "Embeddings", "TensorFlow", "PyTorch"] },
-  { title: "Backend", items: ["Python", "FastAPI", "Node.js", "NestJS", "PostgreSQL"] },
-  { title: "Frontend & Web", items: ["Websites", "Web apps", "Responsive design", "SEO", "GEO"] },
-  { title: "Cloud & Tools", items: ["Docker", "AWS", "Git", "GitHub", "Linux", "VS Code"] },
+  { title: "AI & LLM", items: ["Python", "LangChain", "LangGraph", "RAG", "TensorFlow", "PyTorch", "Prompt engineering"] },
+  { title: "Backend", items: ["FastAPI", "Node.js", "NestJS", "PostgreSQL"] },
+  { title: "Frontend", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
+  { title: "Cloud & Tools", items: ["Docker", "AWS", "Git", "GitHub", "Linux"] },
 ];
 
 export type Project = {
@@ -49,30 +72,28 @@ export type Project = {
   description: string;
   tags: string[];
   demo?: string;
-  repo?: string; // TODO: add only a genuinely live repo URL
+  repo?: string; // add only a genuinely live repo URL
 };
 
 export const projects: Project[] = [
   {
     title: "CSVUndo",
     description:
-      "Free, private, in-browser tool that repairs Excel-damaged CSV files (scientific notation, lost leading zeros, garbled characters), plus clean, merge, split, join, validate and Shopify fixing. No signup — files never leave the browser.",
+      "A privacy-first, browser-based CSV repair and processing tool: fixes Excel-damaged CSVs (scientific notation, lost leading zeros, garbled characters), plus clean, merge, split, join, validate and Shopify fixing. No signup — files never leave the browser.",
     tags: ["CSV tools", "Privacy-first", "Web app"],
     demo: "https://csvundo.com/",
   },
   {
-    title: "Mizan ERP — Multi-tenant SaaS",
+    title: "Mizan ERP",
     description:
-      "A complete multi-tenant ERP platform: organisations, users and business operations in one system.",
+      "A multi-tenant SaaS business management system: organisations, users and business operations in one platform.",
     tags: ["SaaS", "Multi-tenant", "Full-stack"],
-    // TODO: add demo/repo only when a live link exists
   },
   {
     title: "RAG & Agentic AI Chatbot Platform",
     description:
-      "An AI chatbot platform that answers from your own business information, with agentic workflows that take the next step — not just one reply.",
+      "An AI knowledge chatbot with agentic workflows: answers from your own business information and takes the next step — not just one reply.",
     tags: ["RAG", "AI chatbots", "Automation"],
-    // TODO: add demo/repo only when a live link exists
   },
 ];
 

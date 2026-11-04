@@ -3,10 +3,10 @@ import "./globals.css";
 import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
-  title: `${profile.name} — ${profile.title}`,
+  title: `${profile.name} — AI Automation Engineer & Full-Stack Developer`,
   description: profile.tagline,
   openGraph: {
-    title: `${profile.name} — ${profile.title}`,
+    title: `${profile.name} — AI Automation Engineer & Full-Stack Developer`,
     description: profile.tagline,
     type: "website",
   },

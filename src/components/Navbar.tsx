@@ -1,36 +1,53 @@
 "use client";
 
-import { useState } from "react";
-import { Menu, Moon, Sun, X } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Menu, X } from "lucide-react";
 import { navLinks, profile } from "@/data/portfolio";
 
+/** Floating glass nav with active-section highlighting. */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const [dark, setDark] = useState(true);
+  const [active, setActive] = useState("#home");
 
-  const toggleTheme = () => {
-    const next = !dark;
-    setDark(next);
-    document.documentElement.classList.toggle("dark", next);
-    document.body.style.backgroundColor = next ? "#05070f" : "#f8fafc";
-    document.body.style.color = next ? "#e2e8f0" : "#0f172a";
-  };
+  useEffect(() => {
+    const ids = navLinks.map((l) => l.href.slice(1));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActive(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 border-b border-white/10 bg-ink/80 backdrop-blur">
+    <header className="fixed inset-x-0 top-4 z-40 px-4">
       <nav
         aria-label="Main navigation"
-        className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4"
+        className="mx-auto flex max-w-5xl items-center justify-between rounded-full border border-white/10 bg-ink/70 px-5 py-3 shadow-lg shadow-black/40 backdrop-blur-xl"
       >
         <a href="#home" className="font-mono text-lg font-bold text-white">
-          {profile.name.split(" ")[0].toLowerCase()}
-          <span className="text-violetGlow">.dev</span>
+          abdul<span className="text-electric">.dev</span>
         </a>
 
-        <ul className="hidden items-center gap-6 md:flex">
+        <ul className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a href={link.href} className="text-sm text-slate-300 hover:text-white">
+              <a
+                href={link.href}
+                aria-current={active === link.href ? "true" : undefined}
+                className={`rounded-full px-3 py-1.5 text-sm transition ${
+                  active === link.href
+                    ? "bg-violetGlow/30 text-white"
+                    : "text-slate-300 hover:text-white"
+                }`}
+              >
                 {link.label}
               </a>
             </li>
@@ -38,14 +55,12 @@ export default function Navbar() {
         </ul>
 
         <div className="flex items-center gap-2">
-          <button
-            type="button"
-            onClick={toggleTheme}
-            aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-            className="rounded-full border border-white/15 p-2 text-slate-200 hover:bg-white/10"
+          <a
+            href={`mailto:${profile.email}`}
+            className="hidden rounded-full bg-violetGlow px-4 py-2 text-sm font-semibold text-white hover:brightness-110 sm:inline-block"
           >
-            {dark ? <Sun size={18} /> : <Moon size={18} />}
-          </button>
+            Hire Me
+          </a>
           <button
             type="button"
             onClick={() => setOpen(!open)}
@@ -59,7 +74,7 @@ export default function Navbar() {
       </nav>
 
       {open && (
-        <ul className="space-y-1 px-4 pb-4 md:hidden">
+        <ul className="mx-auto mt-2 max-w-5xl space-y-1 rounded-2xl border border-white/10 bg-ink/90 p-3 backdrop-blur-xl md:hidden">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -71,6 +86,14 @@ export default function Navbar() {
               </a>
             </li>
           ))}
+          <li>
+            <a
+              href={`mailto:${profile.email}`}
+              className="block rounded-lg bg-violetGlow px-3 py-2 text-center font-semibold text-white"
+            >
+              Hire Me
+            </a>
+          </li>
         </ul>
       )}
     </header>

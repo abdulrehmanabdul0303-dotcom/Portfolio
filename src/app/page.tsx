@@ -1,4 +1,5 @@
 import Navbar from "@/components/Navbar";
+import ParticleField from "@/components/ParticleField";
 import ScrollProgress from "@/components/ScrollProgress";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -11,9 +12,11 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <ParticleField />
+      <div className="bg-grid pointer-events-none fixed inset-0 z-0" aria-hidden="true" />
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main className="relative">
         <Hero />
         <About />
         <Skills />

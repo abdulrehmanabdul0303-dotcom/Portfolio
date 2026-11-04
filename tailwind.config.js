@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        ink: "#05070f",
-        navy: "#0f172a",
+        ink: "#050816",
+        navy: "#0b1023",
         violetGlow: "#7c3aed",
+        electric: "#38bdf8",
         cyanGlow: "#06b6d4",
       },
       fontFamily: {
