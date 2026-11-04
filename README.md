@@ -1,49 +1,60 @@
-# Abdul Rehman — Developer Portfolio (v2, Premium 3D)
+# Abdul Rehman — Cosmic Portfolio (Professional Edition)
 
-Next.js + TypeScript + Tailwind CSS + React Three Fiber + Framer Motion.
-Premium dark theme (#050816), electric blue / violet / cyan accents,
-glassmorphism, bento grid, interactive 3D hero, particle background.
-
-## What's in v2
-
-- **3D hero:** original procedural neural core (React Three Fiber + Drei) —
-  no external model files, no licensed assets. Gentle idle rotation,
-  mouse-follow tilt, orbiting nodes, star field. Lazy-loaded (browser only),
-  with a CSS glow-orb fallback when WebGL is unavailable.
-- **Background:** lightweight 2D particle canvas + subtle grid + gradient
-  spotlights. Particle canvas is disabled for `prefers-reduced-motion`.
-- **Sections:** About (timeline), Skills (bento tilt cards), Projects
-  (tilt + gradient-glow borders), GitHub (live public API + stats widgets),
-  Contact (validated form, mailto delivery).
-- **Navigation:** floating glass bar, active-section highlighting, mobile menu.
-- **No fake content:** Live Demo buttons only for genuinely live links
-  (CSVUndo). No Download Resume button — no verified public resume file
-  exists in this repository. No screenshots are claimed; project panels are
-  stylised representations, labelled as such.
+A refined React + Vite portfolio with a neon orbital hero, panoramic cyberpunk About portrait, curated skills, illustrated projects, and accessible contact form.
 
 ## Run locally
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
-npm run build   # production build check
+npm run dev
 ```
 
-## Change your content
+Open the localhost URL shown in your terminal.
 
-Edit only `src/data/portfolio.ts`.
+## Build for Vercel
 
-## Deploy (Vercel)
+```bash
+npm run build
+```
 
-Import this repository on vercel.com, framework preset Next.js, deploy.
-Pushing to `main` redeploys automatically if the project is connected.
+Use Vite build output `dist`. In Vercel, framework preset is **Vite**.
+
+## Before publishing
+
+Edit `src/main.jsx`:
+
+- Set `person.email` to a real address to activate the email-draft contact form. While blank, the button is disabled intentionally.
+- Add your real LinkedIn URL and optionally resume path.
+- Add verified live links and GitHub repositories to the `projects` array. Without these, projects display **CONCEPT PREVIEW** rather than non-working buttons.
+- Verify all statements about your work before publishing.
+
+Cyberpunk portrait: `public/Neon Cyberpunk AI Engineer Portrait.png`. This is an image-based cinematic About card, not a real 3D model. Orbital sphere uses CSS 3D-style transforms.
 
 ## Notes
 
-- The contact form opens the visitor's own email app (mailto). Nothing is
-  stored on this site.
-- GitHub data comes from the public, unauthenticated GitHub API. If GitHub
-  rate-limits, the section shows a message + profile link instead of numbers.
-- GSAP was intentionally not added: Framer Motion already covers section
-  reveals, and a second animation library would hurt performance for no
-  visible gain.
+The ERP dashboard illustrations contain *sample data*, not factual business metrics. No message or personal information is stored by the site.
+
+## File structure
+
+```text
+index.html
+package.json
+package-lock.json
+public/Neon Cyberpunk AI Engineer Portrait.png
+src/main.jsx
+src/styles.css
+```
+
+## 3D motion graphics (new)
+
+The homepage now renders a **live WebGL 3D shader** in `src/MotionOrb.jsx`:
+- Animated metallic-blue sphere with rotating neon cyan/purple torus rings and lighting.
+- Mouse/pointer influence on camera and ring angles.
+- Scroll entrance animations for About, Skills, Projects, and Contact.
+- Hover-motion enhancement for project and feature cards.
+- Pauses offscreen, limits rendering to about 30 FPS, reduces pixel ratio on mobile, and respects `prefers-reduced-motion`.
+- Automatically falls back to the previous CSS-based orbital sphere if WebGL is unavailable.
+
+The motion uses browser WebGL and mathematical 3D surfaces (shader raymarching), **not an exported Blender `.blend` or `.glb` asset**. To substitute an actual Blender model later, export it as `.glb` and use a compatible 3D loader.
+
+Motion styles live in `src/motion.css`; no new npm dependencies are needed.

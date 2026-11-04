@@ -1,0 +1,277 @@
+.reactor-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.reactor-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1648 / 928;
+  overflow: hidden;
+  isolation: isolate;
+  border-radius: 22px;
+  background: #030918;
+  border: 1px solid rgba(75, 180, 255, 0.25);
+  box-shadow:
+    0 0 35px rgba(0, 150, 255, 0.1),
+    0 30px 90px rgba(0, 0, 0, 0.5);
+}
+
+.reactor-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+  animation: reactorBreathing 7s ease-in-out infinite;
+}
+
+.reactor-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(
+      circle at 50% 47%,
+      rgba(55, 122, 255, 0.07),
+      transparent 40%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02),
+      rgba(1, 8, 25, 0.2)
+    );
+  pointer-events: none;
+}
+
+.reactor-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.reactor-ring {
+  transform-origin: 824px 440px;
+  transform-box: view-box;
+}
+
+.reactor-ring-one {
+  animation: reactorRotate 9s linear infinite;
+}
+
+.reactor-ring-two {
+  animation: reactorRotateReverse 14s linear infinite;
+}
+
+.reactor-ring-three {
+  animation: reactorRotate 21s linear infinite;
+}
+
+.reactor-particle-orbit {
+  animation: reactorRotate 5s linear infinite;
+}
+
+.reactor-neon-stroke {
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+.reactor-core-aura {
+  animation: reactorAura 3s ease-in-out infinite alternate;
+  transform-origin: 824px 440px;
+}
+
+.reactor-core-pulse {
+  animation: reactorCorePulse 1.8s ease-in-out infinite alternate;
+  transform-origin: 824px 440px;
+}
+
+.reactor-wave {
+  transform-origin: 824px 440px;
+  animation: reactorShockwave 3.3s ease-out infinite;
+  opacity: 0;
+}
+
+.reactor-light-sweep {
+  position: absolute;
+  z-index: 3;
+  top: -70%;
+  left: -45%;
+  width: 28%;
+  height: 240%;
+  transform: rotate(24deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(75, 210, 255, 0.02),
+    rgba(125, 227, 255, 0.18),
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  filter: blur(15px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: reactorSweep 8s ease-in-out infinite;
+}
+
+.reactor-hud {
+  position: absolute;
+  z-index: 5;
+  left: 3%;
+  bottom: 5%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border: 1px solid rgba(75, 240, 255, 0.35);
+  border-radius: 9px;
+  color: #c9faff;
+  background: rgba(3, 12, 31, 0.78);
+  backdrop-filter: blur(12px);
+  font: 10px monospace;
+  letter-spacing: 2px;
+}
+
+.reactor-live-indicator {
+  width: 7px;
+  height: 7px;
+  background: #3affbb;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #3affbb;
+  animation: reactorAura 1.3s infinite alternate;
+}
+
+.reactor-control {
+  position: absolute;
+  z-index: 5;
+  right: 3%;
+  bottom: 5%;
+  padding: 10px 15px;
+  border-radius: 9px;
+  border: 1px solid rgba(130, 170, 255, 0.5);
+  background: rgba(8, 12, 37, 0.8);
+  color: #ffffff;
+  font: 11px monospace;
+  cursor: pointer;
+}
+
+.reactor-control:hover {
+  background: rgba(55, 40, 120, 0.8);
+}
+
+.reactor-control:focus-visible {
+  outline: 2px solid #7ef6ff;
+  outline-offset: 3px;
+}
+
+/* ANIMATIONS */
+
+@keyframes reactorRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes reactorRotateReverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+@keyframes reactorAura {
+  from { opacity: 0.35; }
+  to { opacity: 0.85; }
+}
+
+@keyframes reactorCorePulse {
+  from {
+    transform: scale(0.85);
+    opacity: 0.65;
+  }
+  to {
+    transform: scale(1.3);
+    opacity: 1;
+  }
+}
+
+@keyframes reactorShockwave {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.9;
+  }
+
+  100% {
+    transform: scale(5);
+    opacity: 0;
+  }
+}
+
+@keyframes reactorBreathing {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+
+  50% {
+    transform: scale(1.012);
+    filter: brightness(1.12);
+  }
+}
+
+@keyframes reactorSweep {
+  0%, 15% {
+    left: -45%;
+  }
+
+  70%, 100% {
+    left: 125%;
+  }
+}
+
+/* PAUSE CONTROL */
+
+.reactor-stage.paused *,
+.reactor-stage.paused *::before,
+.reactor-stage.paused *::after {
+  animation-play-state: paused !important;
+}
+
+.reactor-stage.paused animateMotion {
+  display: none;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+  .reactor-stage {
+    border-radius: 14px;
+  }
+
+  .reactor-hud {
+    padding: 6px 9px;
+    font-size: 8px;
+    letter-spacing: 1px;
+  }
+
+  .reactor-control {
+    padding: 7px 9px;
+    font-size: 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reactor-stage *,
+  .reactor-stage *::before,
+  .reactor-stage *::after {
+    animation: none !important;
+  }
+
+  .reactor-stage animateMotion {
+    display: none;
+  }
+}

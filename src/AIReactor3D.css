@@ -1,0 +1,224 @@
+.ai-reactor-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  height: 590px;
+  margin: 0 auto;
+  isolation: isolate;
+  overflow: visible;
+  background: transparent;
+}
+
+.ai-reactor-lab-bg {
+  position: absolute;
+  inset: 8% 4%;
+  z-index: 1;
+  border-radius: 28px;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.28;
+  filter: saturate(1.15) contrast(1.05) blur(0.2px);
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 35%, transparent 78%);
+  pointer-events: none;
+}
+
+.ai-reactor-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  touch-action: pan-y;
+}
+
+.ai-reactor-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ai-reactor-aura {
+  position: absolute;
+  inset: 14%;
+  z-index: 0;
+
+  background: radial-gradient(
+    ellipse at center,
+    rgba(63, 61, 220, .24) 0%,
+    rgba(128, 47, 210, .12) 42%,
+    transparent 75%
+  );
+
+  filter: blur(42px);
+  border-radius: 50%;
+  animation: reactorAura 5s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.ai-reactor-label {
+  position: absolute;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 15px 18px;
+
+  background: rgba(13, 15, 39, .78);
+  border: 1px solid rgba(154, 133, 255, .25);
+  border-radius: 14px;
+  backdrop-filter: blur(16px);
+
+  box-shadow: 0 12px 45px rgba(0, 0, 0, .2);
+  pointer-events: none;
+  animation: reactorCardFloat 5s ease-in-out infinite;
+}
+
+.ai-reactor-label-one {
+  left: 0;
+  top: 27%;
+}
+
+.ai-reactor-label-two {
+  right: 0;
+  bottom: 25%;
+  animation-delay: -2s;
+}
+
+.ai-reactor-icon {
+  font-size: 26px;
+  color: #6eecff;
+  text-shadow: 0 0 15px rgba(94, 230, 255, .5);
+}
+
+.ai-reactor-label strong {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: #f5f3ff;
+}
+
+.ai-reactor-label small {
+  display: block;
+  font-size: 10px;
+  margin-top: 5px;
+  color: #aaa6cb;
+}
+
+.ai-reactor-top-text,
+.ai-reactor-bottom-text {
+  position: absolute;
+  z-index: 4;
+  font-family: monospace;
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #a5a2ca;
+  pointer-events: none;
+}
+
+.ai-reactor-top-text {
+  top: 14%;
+  right: 7%;
+}
+
+.ai-reactor-bottom-text {
+  left: 9%;
+  bottom: 11%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reactor-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #55ffce;
+  box-shadow: 0 0 14px #55ffce;
+}
+
+@keyframes reactorAura {
+  from {
+    opacity: .5;
+    transform: scale(.92);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes reactorCardFloat {
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .ai-reactor-wrapper {
+    width: 100%;
+    height: 430px;
+    max-width: 100%;
+  }
+
+  .ai-reactor-label {
+    padding: 10px 12px;
+  }
+
+  .ai-reactor-label strong {
+    font-size: 9px;
+  }
+
+  .ai-reactor-label small {
+    font-size: 8px;
+  }
+
+  .ai-reactor-label-one {
+    left: 2%;
+    top: 18%;
+  }
+
+  .ai-reactor-label-two {
+    right: 2%;
+    bottom: 18%;
+  }
+
+  .ai-reactor-top-text {
+    top: 7%;
+    right: 5%;
+  }
+
+  .ai-reactor-bottom-text {
+    bottom: 5%;
+    left: 5%;
+  }
+}
+
+@media (max-width: 480px) {
+  .ai-reactor-wrapper {
+    height: 350px;
+  }
+
+  .ai-reactor-label {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .ai-reactor-label small {
+    display: none;
+  }
+
+  .ai-reactor-icon {
+    font-size: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-reactor-aura,
+  .ai-reactor-label {
+    animation: none;
+  }
+}

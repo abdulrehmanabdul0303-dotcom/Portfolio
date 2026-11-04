@@ -1,0 +1,362 @@
+.face-impulse-wrapper {
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.face-impulse-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  border-radius: 24px;
+  isolation: isolate;
+
+  background: #0a071c;
+  border: 1px solid rgba(163, 94, 255, 0.35);
+
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.5),
+    0 0 45px rgba(130, 55, 255, 0.18);
+}
+
+.face-impulse-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: saturate(1.08) contrast(1.04);
+}
+
+.face-impulse-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.electric-travel {
+  animation-name: electricMove;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  filter: drop-shadow(0 0 5px #61eaff);
+}
+
+@keyframes electricMove {
+  from {
+    stroke-dashoffset: 520;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+    opacity: 0;
+  }
+}
+
+.face-impulse-glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: radial-gradient(
+    circle at 53% 47%,
+    rgba(75, 180, 255, 0.04),
+    transparent 35%
+  );
+}
+
+.face-impulse-toggle {
+  position: absolute;
+  z-index: 5;
+  right: 15px;
+  bottom: 15px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: rgba(12, 9, 35, 0.8);
+  color: #d8ceff;
+  border: 1px solid rgba(153, 115, 255, 0.5);
+  font: 10px monospace;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+
+.face-impulse-toggle:hover {
+  background: rgba(92, 49, 164, 0.65);
+}
+
+/* Pause CSS and SVG motion */
+
+.face-impulse-stage.paused .electric-travel {
+  animation-play-state: paused;
+}
+
+.face-impulse-stage.paused animateMotion {
+  display: none;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .face-impulse-stage {
+    border-radius: 16px;
+  }
+
+  .face-impulse-toggle {
+    font-size: 8px;
+    padding: 7px 9px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .electric-travel {
+    animation: none;
+  }
+
+  .face-impulse-svg animateMotion {
+    display: none;
+  }
+}
+
+/* =====================================
+   SKILLS — SEQUENTIAL ACTIVATION
+===================================== */
+
+.skill-hud-item {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: skillActivate 4s ease-in-out infinite;
+}
+
+.skill-light-travel {
+  animation: skillTravel 2.4s linear infinite;
+  filter: drop-shadow(0 0 7px #5cecff);
+}
+
+.skill-status-light {
+  animation: skillStatus 1.8s ease-in-out infinite;
+  filter: drop-shadow(0 0 7px #52efff);
+}
+
+@keyframes skillActivate {
+  0%, 100% {
+    opacity: .5;
+  }
+
+  35%, 65% {
+    opacity: 1;
+  }
+}
+
+@keyframes skillTravel {
+  from {
+    stroke-dashoffset: 350;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes skillStatus {
+  0%, 100% {
+    opacity: .35;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =====================================
+   3D-STYLE AI BRAIN HOLOGRAM
+===================================== */
+
+.brain-ring-outer,
+.brain-ring-inner,
+.brain-orbit-particles {
+  transform-box: view-box;
+  transform-origin: 1298px 318px;
+}
+
+.brain-ring-outer {
+  animation: brainRotate 14s linear infinite;
+  filter: drop-shadow(0 0 8px #56eaff);
+}
+
+.brain-ring-inner {
+  animation: brainRotateReverse 10s linear infinite;
+  filter: drop-shadow(0 0 8px #bd6aff);
+}
+
+.brain-orbit-particles {
+  animation: brainRotate 5s linear infinite;
+  filter: drop-shadow(0 0 10px #6beaff);
+}
+
+.brain-energy-wave {
+  transform-box: view-box;
+  transform-origin: 1298px 318px;
+  animation: brainWave 3s ease-out infinite;
+}
+
+.brain-center-glow {
+  animation: brainGlow 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px #83faff);
+}
+
+.brain-neural-signal {
+  animation: neuralTravel 2.7s linear infinite;
+  filter: drop-shadow(0 0 6px #6cffff);
+}
+
+@keyframes brainRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes brainRotateReverse {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes brainWave {
+  0% {
+    transform: scale(.65);
+    opacity: .8;
+  }
+
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+@keyframes brainGlow {
+  0%, 100% {
+    opacity: .4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes neuralTravel {
+  from {
+    stroke-dashoffset: 250;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* =====================================
+   ANIMATED ANALYTICS CHART
+===================================== */
+
+.chart-bar {
+  transform-box: view-box;
+  animation: chartGrowth 2.8s ease-in-out infinite;
+}
+
+.chart-bar-light {
+  animation: chartLightPulse 2s ease-in-out infinite;
+  filter: drop-shadow(0 0 7px #6deeff);
+}
+
+.chart-scanning-line {
+  animation: chartScan 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 6px #4defff);
+}
+
+.chart-data-flow {
+  animation: chartFlow 3s linear infinite;
+}
+
+@keyframes chartGrowth {
+  0%, 100% {
+    transform: scaleY(.45);
+    opacity: .4;
+  }
+
+  50% {
+    transform: scaleY(1);
+    opacity: .9;
+  }
+}
+
+@keyframes chartLightPulse {
+  0%, 100% {
+    opacity: .4;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes chartScan {
+  from {
+    transform: translateY(0);
+    opacity: .15;
+  }
+
+  to {
+    transform: translateY(110px);
+    opacity: 1;
+  }
+}
+
+@keyframes chartFlow {
+  from {
+    stroke-dashoffset: 250;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* =====================================
+   PAUSE ALL MOTION
+===================================== */
+
+.face-impulse-stage.paused .skill-hud-item,
+.face-impulse-stage.paused .skill-light-travel,
+.face-impulse-stage.paused .skill-status-light,
+.face-impulse-stage.paused .brain-ring-outer,
+.face-impulse-stage.paused .brain-ring-inner,
+.face-impulse-stage.paused .brain-orbit-particles,
+.face-impulse-stage.paused .brain-energy-wave,
+.face-impulse-stage.paused .brain-center-glow,
+.face-impulse-stage.paused .brain-neural-signal,
+.face-impulse-stage.paused .chart-bar,
+.face-impulse-stage.paused .chart-scanning-line,
+.face-impulse-stage.paused .chart-data-flow {
+  animation-play-state: paused;
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .skills-hud *,
+  .brain-hologram *,
+  .chart-hologram * {
+    animation: none !important;
+  }
+}
